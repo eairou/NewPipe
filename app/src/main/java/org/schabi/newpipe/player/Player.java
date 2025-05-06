@@ -464,7 +464,8 @@ public final class Player implements PlaybackListener, Listener {
                             new AlertDialog.Builder(context)
                                     .setTitle(R.string.player_stream_failure)
                                     .setMessage(
-                                            ErrorPanelHelper.Companion.getExceptionDescription(throwable))
+                                            ErrorPanelHelper.Companion.getExceptionDescription(
+                                                    throwable))
                                     .setPositiveButton(R.string.ok, null)
                                     .show();
                         }));
