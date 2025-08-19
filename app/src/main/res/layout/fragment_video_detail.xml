@@ -223,7 +223,7 @@
                 <LinearLayout
                     android:id="@+id/detail_content_root_hiding"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/detail_title_root_layout"
                     android:orientation="vertical"
                     android:paddingBottom="10dp"
