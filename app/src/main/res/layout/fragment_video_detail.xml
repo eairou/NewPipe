@@ -596,7 +596,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:insetEdge="bottom"
+        app:layout_insetEdge="bottom"
         app:elevation="16dp"
         app:tabBackground="?attr/windowBackground"
         app:tabGravity="fill"
