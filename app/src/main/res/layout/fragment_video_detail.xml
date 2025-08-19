@@ -8,23 +8,24 @@
     android:background="?attr/windowBackground"
     android:focusableInTouchMode="true">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/detail_main_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!-- 1) CoordinatorLayout 占满屏幕 -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/detail_main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:elevation="0dp"
-            app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp"
+        app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
 
             <org.schabi.newpipe.views.CustomCollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll">
+                android:layout_height="wrap_content">
+                
 
                 <!-- THUMBNAIL -->
                 <FrameLayout
@@ -141,20 +142,21 @@
                         tools:visibility="visible" />
 
                     <!-- Player will be inserted here in realtime -->
-                    <FrameLayout
-                        android:id="@+id/player_placeholder"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </FrameLayout>
-            </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
+                   <!-- 可选：占位高度修正 -->
+            <FrameLayout
+                android:id="@+id/player_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:visibility="gone" />
+        </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
 
             <!-- CONTENT -->
             <RelativeLayout
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll">
+                android:layout_height="wrap_content">
+                
 
                 <!-- TITLE -->
                 <FrameLayout
@@ -578,25 +580,27 @@
             </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="48dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+         <!-- 3) ViewPager 保留 Behavior，改用边缘避让 -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_dodgeInsetEdges="bottom" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            app:elevation="16dp"
-            app:tabBackground="?attr/windowBackground"
-            app:tabGravity="fill"
-            app:tabIconTint="?attr/colorAccent"
-            app:tabIndicatorGravity="top" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- 4) TabLayout 固定底部并声明 insetEdge -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:insetEdge="bottom"
+        app:elevation="16dp"
+        app:tabBackground="?attr/windowBackground"
+        app:tabGravity="fill"
+        app:tabIconTint="?attr/colorAccent"
+        app:tabIndicatorGravity="top" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <RelativeLayout
         android:id="@+id/overlay_layout"
